@@ -278,9 +278,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lj68b"]
-size = Vector2(12, 10)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpx3q"]
 size = Vector2(15, 15)
 
@@ -296,15 +293,11 @@ sprite_frames = SubResource("SpriteFrames_epyhi")
 animation = &"idle_up"
 script = ExtResource("3_100sh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=619702113]
-position = Vector2(0, 2.75)
-shape = SubResource("RectangleShape2D_lj68b")
-
 [node name="MeleeAttack" type="AudioStreamPlayer2D" parent="." unique_id=757347320]
 stream = ExtResource("2_lj68b")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=818418039]
-position = Vector2(7.75, 0.25)
+position = Vector2(7.5, 0.25)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1854390598]
@@ -313,6 +306,6 @@ shape = SubResource("RectangleShape2D_kpx3q")
 [node name="InputComponent" parent="." unique_id=153531004 instance=ExtResource("4_100sh")]
 
 [node name="MovementComponent" parent="." unique_id=1092337649 instance=ExtResource("5_lmye5")]
-speed = 200
+speed = 500
 
 [connection signal="player1_moved" from="InputComponent" to="." method="_on_input_component_player_1_moved"]
