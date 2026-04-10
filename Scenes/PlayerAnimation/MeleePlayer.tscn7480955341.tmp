@@ -306,6 +306,6 @@ shape = SubResource("RectangleShape2D_kpx3q")
 [node name="InputComponent" parent="." unique_id=153531004 instance=ExtResource("4_100sh")]
 
 [node name="MovementComponent" parent="." unique_id=1092337649 instance=ExtResource("5_lmye5")]
-speed = 200
+speed = 500
 
 [connection signal="player1_moved" from="InputComponent" to="." method="_on_input_component_player_1_moved"]
