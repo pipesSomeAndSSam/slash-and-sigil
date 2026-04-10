@@ -1,10 +1,11 @@
 extends Node2D
+class_name InputComponent
 
 # Signals for movement
 signal player1_moved(movement: Vector2)
 signal player2_moved(movement: Vector2)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	# Get movement vector and emit through each player
 	var p1_movement = Input.get_vector(
 		"player1_left", 
