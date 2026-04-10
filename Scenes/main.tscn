@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://3f66ikw30icx"]
+
+[ext_resource type="PackedScene" uid="uid://dy3djcetqqcah" path="res://Scenes/PlayerAnimation/MeleePlayer.tscn" id="1_jjgbg"]
+
+[node name="Main" type="Node2D" unique_id=690480970]
+
+[node name="MeleePlayer" parent="." unique_id=836309907 instance=ExtResource("1_jjgbg")]
+position = Vector2(551, 288)
