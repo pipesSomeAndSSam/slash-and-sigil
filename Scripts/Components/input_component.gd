@@ -1,22 +1,25 @@
+# Component for managing Player Input for each player.
 extends Node2D
 class_name InputComponent
 
+# Variables
+@export var player_number: int
+
 # Signals for movement
-signal player1_moved(movement: Vector2)
-signal player2_moved(movement: Vector2)
+signal player_moved(movement: Vector2)
 
 func _physics_process(delta: float) -> void:
+	# Ensures only 2 players are available in the game.
+	if player_number < 0 or player_number > 2:
+		return
+		
 	# Get movement vector and emit through each player
-	var p1_movement = Input.get_vector(
-		"player1_left", 
-		"player1_right", 
-		"player1_up", 
-		"player1_down")
-	var p2_movement = Input.get_vector(
-		"player2_left",
-		"player2_right",
-		"player2_up", 
-		"player2_down")
+	var p = "player%d_" % player_number
+	var p_movement = Input.get_vector(
+		p+"left",
+		p+"right",
+		p+"up",
+		p+"down"
+	)
 	
-	player1_moved.emit(p1_movement)
-	player2_moved.emit(p2_movement)
+	player_moved.emit(p_movement)

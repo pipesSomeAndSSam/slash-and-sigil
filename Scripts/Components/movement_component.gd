@@ -1,3 +1,4 @@
+# Component for managing player movement
 extends Node2D
 class_name MovementComponent
 

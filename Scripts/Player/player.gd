@@ -5,10 +5,10 @@ extends CharacterBody2D
 @export var movement_component: MovementComponent
 @export var animation_component: AnimationComponent
 
-# TO DO: Make this function to cater to a particular player
-# Function that connects to when player1 is moved
+# Function that connects to when player moved
 # movement is a Vector2 that shows the direction of the player
-func _on_input_component_player_1_moved(movement: Vector2) -> void:
+func _on_input_component_player_moved(movement: Vector2) -> void:
+	# Calculate player movement
 	var player_movement = movement_component.calculate_movement(movement)
 	
 	# Update movement and animation
