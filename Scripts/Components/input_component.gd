@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 	if player_number < 0 or player_number > 2:
 		return
 		
-	# Get movement vector and emit through each player
+	# Get movement vector from player
 	var p = "player%d_" % player_number
 	var p_movement = Input.get_vector(
 		p+"left",
@@ -22,4 +22,5 @@ func _physics_process(delta: float) -> void:
 		p+"down"
 	)
 	
+	# Emit signal indicating the player has moved
 	player_moved.emit(p_movement)
