@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://cqbseaw1scdv8"]
+[gd_scene format=3 uid="uid://c5e2seihgtsnw"]
 
+[ext_resource type="Script" path="res://Scripts/Components/animation_component.gd" id="1_lm80p"]
 [ext_resource type="SpriteFrames" uid="uid://jruptsuq3df0" path="res://Resources/Players/Melee/m_sprite_frames.tres" id="2_0ayny"]
-[ext_resource type="Script" uid="uid://bfcr4itx3wtsj" path="res://Scripts/Components/animation_component.gd" id="2_lm80p"]
 
 [node name="AnimationComponent" type="Node2D" unique_id=1077564949 node_paths=PackedStringArray("sprite")]
-script = ExtResource("2_lm80p")
+script = ExtResource("1_lm80p")
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=764702358]
