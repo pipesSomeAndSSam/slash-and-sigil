@@ -2,6 +2,7 @@
 extends Node2D
 class_name Messages
 
+# Messages for testing input mapping
 #region Player Inputs
 static func player_movement_pressed(p_num: int, direction: Vector2):
 	return "Player %d moved: (%.2f, %.2f)" % [p_num, direction.x, direction.y]
