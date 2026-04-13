@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c4gcy71ubjwbw"]
+
+[ext_resource type="Texture2D" uid="uid://dj0yn4glkvu42" path="res://UI/heart_full.png" id="1_e0onf"]
+
+[node name="HUD" type="CanvasLayer" unique_id=657072141]
+
+[node name="Hearts" type="HBoxContainer" parent="." unique_id=892603442]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(3, 3)
+
+[node name="Heart1" type="TextureRect" parent="Hearts" unique_id=98683151]
+layout_mode = 2
+texture = ExtResource("1_e0onf")
+stretch_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="Hearts" unique_id=1965293717]
+layout_mode = 2
+texture = ExtResource("1_e0onf")
+stretch_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="Hearts" unique_id=1513134822]
+layout_mode = 2
+texture = ExtResource("1_e0onf")
+stretch_mode = 2
+
+[node name="Heart4" type="TextureRect" parent="Hearts" unique_id=1732126848]
+layout_mode = 2
+texture = ExtResource("1_e0onf")
+stretch_mode = 2
+
+[node name="Heart5" type="TextureRect" parent="Hearts" unique_id=1266838924]
+layout_mode = 2
+texture = ExtResource("1_e0onf")
+stretch_mode = 2
