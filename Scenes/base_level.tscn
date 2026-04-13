@@ -3371,3 +3371,5 @@ tile_set = SubResource("TileSet_sur3v")
 [node name="MeleePlayer" parent="." unique_id=836309907 instance=ExtResource("2_5s04l")]
 position = Vector2(569, 327)
 scale = Vector2(3, 3)
+
+[node name="Items" type="Node2D" parent="." unique_id=2024310871]
