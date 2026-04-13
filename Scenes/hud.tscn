@@ -3,10 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://80u4jfg7sg3e" path="res://Assets/Ninja Adventure - Asset Pack/Ninja Adventure - Asset Pack/Ui/Dialog/FacesetBox.png" id="1_bjfho"]
 [ext_resource type="Texture2D" uid="uid://dj0yn4glkvu42" path="res://UI/heart_full.png" id="1_e0onf"]
 [ext_resource type="Texture2D" uid="uid://b6kpkq441fp27" path="res://Assets/Ninja Adventure - Asset Pack/Ninja Adventure - Asset Pack/Actor/Characters/RedGladiator/Faceset.png" id="1_fccik"]
+[ext_resource type="Texture2D" uid="uid://bd4ea5xn4wx65" path="res://UI/Skills/MeleePlayer/02-FireSkill.png" id="4_t1xeu"]
+[ext_resource type="Texture2D" uid="uid://c01p2208qh08e" path="res://UI/Skills/MeleePlayer/04-FireSkill.png" id="5_36asn"]
 
 [node name="HUD" type="CanvasLayer" unique_id=657072141]
 
-[node name="TextureRect2" type="TextureRect" parent="." unique_id=267276830]
+[node name="PlayerFrame" type="TextureRect" parent="." unique_id=267276830]
 offset_left = 7.0
 offset_top = 7.0
 offset_right = 96.0
@@ -14,7 +16,7 @@ offset_bottom = 96.0
 texture = ExtResource("1_bjfho")
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect3" type="TextureRect" parent="." unique_id=468333723]
+[node name="PlayerIcon" type="TextureRect" parent="." unique_id=468333723]
 offset_left = 17.0
 offset_top = 17.0
 offset_right = 86.0
@@ -55,4 +57,21 @@ stretch_mode = 2
 [node name="Heart5" type="TextureRect" parent="Hearts" unique_id=1266838924]
 layout_mode = 2
 texture = ExtResource("1_e0onf")
+stretch_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1307159359]
+offset_left = 107.0
+offset_top = 46.0
+offset_right = 143.0
+offset_bottom = 62.0
+scale = Vector2(3, 3)
+
+[node name="Skill1" type="TextureRect" parent="HBoxContainer" unique_id=116978788]
+layout_mode = 2
+texture = ExtResource("4_t1xeu")
+stretch_mode = 2
+
+[node name="Skill2" type="TextureRect" parent="HBoxContainer" unique_id=1013406728]
+layout_mode = 2
+texture = ExtResource("5_36asn")
 stretch_mode = 2
