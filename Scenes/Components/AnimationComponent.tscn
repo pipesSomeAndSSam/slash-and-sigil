@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c5e2seihgtsnw"]
+[gd_scene format=3 uid="uid://cqbseaw1scdv8"]
 
 [ext_resource type="Script" uid="uid://bfcr4itx3wtsj" path="res://Scripts/Components/animation_component.gd" id="1_lm80p"]
 [ext_resource type="SpriteFrames" uid="uid://jruptsuq3df0" path="res://Resources/Players/Melee/m_sprite_frames.tres" id="2_0ayny"]

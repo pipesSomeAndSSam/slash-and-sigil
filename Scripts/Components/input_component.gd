@@ -31,13 +31,13 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	# Emit signals for when attack and skill keys are pressed
 	if event.is_action_pressed(player_number_string + "attack"):
-		#print(Messages.player_attack_pressed(player_number))
+		print(Messages.player_attack_pressed(player_number))
 		attack_pressed.emit()
 	
 	elif event.is_action_pressed(player_number_string + "skill1"):
-		#print(Messages.player_skill1_pressed(player_number))
+		print(Messages.player_skill1_pressed(player_number))
 		skill1_pressed.emit()
 		
 	elif event.is_action_pressed(player_number_string + "skill2"):
-		#print(Messages.player_skill2_pressed(player_number))
+		print(Messages.player_skill2_pressed(player_number))
 		skill2_pressed.emit()

@@ -1,9 +1,5 @@
-extends CharacterBody2D
-
-# Player Components
-@export var input_component: InputComponent
-@export var movement_component: MovementComponent
-@export var animation_component: AnimationComponent
+extends BasePlayer
+class_name MeleePlayer
 
 # Function that connects to when player moved
 # movement is a Vector2 that shows the direction of the player
