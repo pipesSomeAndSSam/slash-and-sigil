@@ -3,7 +3,7 @@ class_name PlayerInfo
 
 # Stats
 @export_group("Stats")
-@export var health: int
+@export var health: float
 @export var speed: int
 @export var attack: int
 
