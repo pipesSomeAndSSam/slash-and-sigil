@@ -44,4 +44,5 @@ speed = 200
 
 [node name="HealthComponent" parent="." unique_id=1758390133 instance=ExtResource("6_100sh")]
 
+[connection signal="attack_pressed" from="InputComponent" to="." method="_on_input_component_attack_pressed"]
 [connection signal="player_moved" from="InputComponent" to="." method="_on_input_component_player_moved"]
