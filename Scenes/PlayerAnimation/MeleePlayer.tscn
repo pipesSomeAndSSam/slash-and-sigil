@@ -11,9 +11,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lj68b"]
 size = Vector2(12, 10)
 
-[node name="MeleePlayer" type="CharacterBody2D" unique_id=398600512 node_paths=PackedStringArray("input_component", "movement_component", "animation_component", "health_component")]
+[node name="MeleePlayer" type="CharacterBody2D" unique_id=398600512 node_paths=PackedStringArray("melee_attack_component", "input_component", "movement_component", "animation_component", "health_component")]
 scale = Vector2(4, 4)
 script = ExtResource("1_t2dcf")
+melee_attack_component = NodePath("MeleeAttackComponent")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
@@ -26,9 +27,6 @@ shape = SubResource("RectangleShape2D_lj68b")
 [node name="MeleeAttack" type="AudioStreamPlayer2D" parent="." unique_id=213702102]
 stream = ExtResource("2_lj68b")
 
-[node name="Hitbox" parent="." unique_id=1107626998 instance=ExtResource("3_lmye5")]
-position = Vector2(7.75, 0.25)
-
 [node name="InputComponent" parent="." unique_id=1288122305 instance=ExtResource("4_100sh")]
 
 [node name="MovementComponent" parent="." unique_id=13386198 instance=ExtResource("5_lmye5")]
@@ -37,6 +35,9 @@ speed = 200
 [node name="AnimationComponent" parent="." unique_id=1077564949 instance=ExtResource("5_t2dcf")]
 
 [node name="HealthComponent" parent="." unique_id=1758390133 instance=ExtResource("6_100sh")]
+
+[node name="MeleeAttackComponent" parent="." unique_id=1202563886 instance=ExtResource("3_lmye5")]
+position = Vector2(7.75, 0.25)
 
 [connection signal="attack_pressed" from="InputComponent" to="." method="_on_input_component_attack_pressed"]
 [connection signal="player_moved" from="InputComponent" to="." method="_on_input_component_player_moved"]

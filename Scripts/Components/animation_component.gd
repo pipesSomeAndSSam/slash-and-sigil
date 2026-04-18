@@ -2,8 +2,14 @@
 extends Node2D
 class_name AnimationComponent
 
+#region Declarables
 # Variables
 @export var sprite : AnimatedSprite2D
+
+# Constants
+const WALK : String = "walk"
+const IDLE : String = "idle"
+const ATTACK : String = "attack"
 
 # Enum for which direction the player is facing
 enum Direction {
@@ -12,6 +18,7 @@ enum Direction {
 	LEFT,
 	RIGHT
 }
+
 
 # Variables for keeping track of the player facing mechanics
 # Mechanics:
@@ -33,7 +40,7 @@ var _has_primary : bool = false
 # Signals
 signal direction_faced_changed(direction: Direction)
 signal animation_finished
-
+#endregion
 
 # Function for updating movement
 # movement is a Vector2 that shows the direction of the player
@@ -65,32 +72,28 @@ func update_movement(movement: Vector2) -> void:
 		# introduces movement in the axis opposite to the primary
 		# direction, the player should be facing in the introduced
 		# movement. 
-		var display_direction : Direction
 		if (_primary_direction == Direction.LEFT or _primary_direction == Direction.RIGHT) and movement.y != 0:
-			display_direction = Direction.UP if movement.y < 0 else Direction.DOWN
+			faced_direction = Direction.UP if movement.y < 0 else Direction.DOWN
 		elif (_primary_direction == Direction.UP or _primary_direction == Direction.DOWN) and movement.x != 0:
-			display_direction = Direction.LEFT if movement.x < 0 else Direction.RIGHT
+			faced_direction = Direction.LEFT if movement.x < 0 else Direction.RIGHT
 			
 		# Otherwise, the faced direction is the primary direction.
 		else:
-			display_direction = _primary_direction
+			faced_direction = _primary_direction
 	
 		# Display the walking animation based on the faced direction
-		faced_direction = display_direction
-		_play_directional_anim("walk", display_direction)
+		_play_directional_anim(WALK, faced_direction)
+		direction_faced_changed.emit(faced_direction)
 		
 	else:
 		# When the player is idle, it does not have a primary direction and plays the idle animation of the direction it last faced.
 		_has_primary = false
-		_play_directional_anim("idle", faced_direction)
+		_play_directional_anim(IDLE, faced_direction)
+		direction_faced_changed.emit(faced_direction)
 
 # Function for when the player attacks
 func play_attack() -> void:
-	match faced_direction:
-		Direction.LEFT:		sprite.play("attack_left")
-		Direction.RIGHT:	sprite.play("attack_right")
-		Direction.UP:		sprite.play("attack_up")
-		Direction.DOWN:		sprite.play("attack_down")
+	_play_directional_anim(ATTACK, faced_direction)
 
 #region Signal Functions
 # Signal that emits when an animation is finished
@@ -101,12 +104,5 @@ func _on_animated_sprite_animation_finished() -> void:
 #region Helper Functions
 # Function for changing the direction of the player and playing the right animations for idling and walking 
 func _play_directional_anim(prefix: String, direction: Direction) -> void:
-	match direction:
-		Direction.LEFT:  sprite.play(prefix + "_left")
-		Direction.RIGHT: sprite.play(prefix + "_right")
-		Direction.UP:    sprite.play(prefix + "_up")
-		Direction.DOWN:  sprite.play(prefix + "_down")
-	
-	# Emits that the direction has changed
-	direction_faced_changed.emit(direction)
+	sprite.play(Strings.DEFAULT_ANIM_NAME(prefix, direction))
 #endregion

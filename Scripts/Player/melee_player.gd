@@ -4,6 +4,9 @@ class_name MeleePlayer
 
 # TO DO: Assess whether some parts of this code can be transferred to Base Player
 
+# Components for Melee Player
+@export var melee_attack_component : MeleeAttackComponent
+
 # State enum for state management
 enum State {
 	DEFAULT,
@@ -49,3 +52,4 @@ func _attack() -> void:
 	if player_state == State.DEFAULT:
 		player_state = State.ATTACK
 		animation_component.play_attack()
+		melee_attack_component.get_targets()
