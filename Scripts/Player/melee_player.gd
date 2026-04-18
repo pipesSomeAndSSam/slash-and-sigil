@@ -38,6 +38,7 @@ func _on_animation_component_animation_finished() -> void:
 # Function that implements the movement logic given its components
 # movement is a Vector2 that shows the direction of the player
 func _move(movement: Vector2) -> void:
+	# Can only move in DEFAULT state
 	if player_state == State.DEFAULT:
 		# Calculate player movement
 		var player_movement = movement_component.calculate_movement(movement)
@@ -49,7 +50,13 @@ func _move(movement: Vector2) -> void:
 
 # Function that implements the attack logic given its components
 func _attack() -> void:
+	# Can only attack in DEFAULT state
 	if player_state == State.DEFAULT:
-		player_state = State.ATTACK
-		animation_component.play_attack()
-		melee_attack_component.get_targets()
+		player_state = State.ATTACK # Change State to ATTACK
+		animation_component.play_attack() # Play attack animation
+		
+		# Damage all damageable targets
+		var targets = melee_attack_component.get_targets()
+		for target in targets:
+			var target_hp := target.get_node(Strings.HEALTH_COMPONENT_NAME) as HealthComponent
+			target_hp.take_damage(melee_attack_component.damage)

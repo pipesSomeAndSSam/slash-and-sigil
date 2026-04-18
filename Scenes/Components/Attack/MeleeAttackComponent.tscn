@@ -5,11 +5,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpx3q"]
 size = Vector2(15, 15)
 
-[node name="MeleeAttackComponent" type="Area2D" unique_id=1107626998 node_paths=PackedStringArray("punch_hitbox")]
+[node name="MeleeAttackComponent" type="Area2D" unique_id=1107626998]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_208t7")
-punch_hitbox = NodePath("Hitbox")
+damage = 5.0
 metadata/_edit_group_ = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1673452760]

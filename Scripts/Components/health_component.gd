@@ -1,5 +1,5 @@
 # Component for managing player health
-extends Node2D
+extends Area2D
 class_name HealthComponent
 
 # Variables
@@ -16,6 +16,7 @@ func take_damage(damage: float) -> void:
 	health = max(0, health - damage)
 	player_damaged.emit(damage)
 	
+	print("Took %.2f damage. Current health: %.2f" % [damage, health])
 	# Emit signal that the player has died if health has reached 0 
 	if not health:
 		player_died.emit()
