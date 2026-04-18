@@ -36,5 +36,5 @@ static func PLAYER_INPUT_MOVEMENT_MAP(player_no: int, direction: String) -> Stri
 	return "player%d_%s" % [player_no, direction]
 
 static func PLAYER_INPUT_ACTION_MAP(player_no: int, action: String) -> String:
-	return "player%d_%ssd" % [player_no, action]
+	return "player%d_%s" % [player_no, action]
 #endregion
