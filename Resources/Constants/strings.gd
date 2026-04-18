@@ -1,3 +1,4 @@
+# Single source of truth for script strings
 extends Node
 class_name Strings
 
@@ -13,14 +14,8 @@ const MELEE_ATTACK_COMPONENT_NAME : String = "MeleeAttackComponent"
 #endregion
 
 #region Animation Names
-# Attack Animation
-const ATTACK_LEFT_MAP : String = "attack_left"
-const ATTACK_RIGHT_MAP : String = "attack_right"
-const ATTACK_UP_MAP : String = "attack_up"
-const ATTACK_DOWN_MAP : String = "attack_down"
-
 # Default Animations
-static func DEFAULT_ANIM_NAME(type: String, direction: int) -> String:
+static func default_anim_name(type: String, direction: int) -> String:
 	var dir_string = AnimationComponent.Direction.keys()[direction].to_lower()
 	return "%s_%s" % [type, dir_string]
 #endregion
@@ -32,9 +27,9 @@ const ANIMATION : String = "Animation"
 #endregion
 
 #region Input Names
-static func PLAYER_INPUT_MOVEMENT_MAP(player_no: int, direction: String) -> String:
+static func player_input_movement_map(player_no: int, direction: String) -> String:
 	return "player%d_%s" % [player_no, direction]
 
-static func PLAYER_INPUT_ACTION_MAP(player_no: int, action: String) -> String:
+static func player_input_action_map(player_no: int, action: String) -> String:
 	return "player%d_%s" % [player_no, action]
 #endregion

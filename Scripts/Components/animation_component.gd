@@ -104,5 +104,5 @@ func _on_animated_sprite_animation_finished() -> void:
 #region Helper Functions
 # Function for changing the direction of the player and playing the right animations for idling and walking 
 func _play_directional_anim(prefix: String, direction: Direction) -> void:
-	sprite.play(Strings.DEFAULT_ANIM_NAME(prefix, direction))
+	sprite.play(Strings.default_anim_name(prefix, direction))
 #endregion
