@@ -5,51 +5,100 @@ class_name AnimationComponent
 # Variables
 @export var sprite : AnimatedSprite2D
 
-
+# Enum for which direction the player is facing
 enum Direction {
 	DOWN,
 	UP,
 	LEFT,
 	RIGHT
 }
-var faced_direction : Direction
-var _primary_direction : Direction = Direction.DOWN
-var _has_primary : bool = false
 
+# Variables for keeping track of the player facing mechanics
+# Mechanics:
+# 1. When a player is originally facing one direction only then
+# adds another direction of the opposite axis (e.g., left
+# then down), it should face the newly added direction.
+# 2. In a circumstance where directions from both axes are 
+# detected, the x-axis has higher precedence (e.g., if left
+# and down, it becomes left then down)
+
+# The direction the player is expected to face given the mechanics
+var faced_direction : Direction  
+# The original direction the player faced (e.g., if left then down,
+# then left is the primary direction)
+var _primary_direction : Direction = Direction.DOWN 
+var _has_primary : bool = false 
+
+# Signals
 signal direction_faced_changed(direction: Direction)
 signal animation_finished
 
+
+# Function for updating movement
+# movement is a Vector2 that shows the direction of the player
 func update_movement(movement: Vector2) -> void:
+	# Checks if movement is a Zero Vector2
+	# Plays Idle animations if so, or Walk animations otherwise
 	if movement != Vector2.ZERO:
 		if not _has_primary:
-			# First frame: x wins if both active, otherwise whichever axis is moving
+			# To obtain an x-axis precedence, the primary direction
+			# will always be in the x-axis whenever there is a an
+			# x-axis movement detected. Otherwise, the primary direction will be in the y-axis.
 			if movement.x != 0:
 				_primary_direction = Direction.LEFT if movement.x < 0 else Direction.RIGHT
 			else:
 				_primary_direction = Direction.UP if movement.y < 0 else Direction.DOWN
+			
+			# If the player is moving, it automatically has a primary direction. 
 			_has_primary = true
+			
 		else:
+			# When the player is moving strictly in a direction of one axis, then the primary direction should be where the direction in which the player is going.
 			if movement.x != 0 and movement.y == 0:
 				_primary_direction = Direction.LEFT if movement.x < 0 else Direction.RIGHT
 			elif movement.x == 0 and movement.y != 0:
 				_primary_direction = Direction.UP if movement.y < 0 else Direction.DOWN
 		
 
-		# Display: y overrides when primary is horizontal, but primary stays locked
+		# If a primary direction exists and the movement vector
+		# introduces movement in the axis opposite to the primary
+		# direction, the player should be facing in the introduced
+		# movement. 
 		var display_direction : Direction
 		if (_primary_direction == Direction.LEFT or _primary_direction == Direction.RIGHT) and movement.y != 0:
 			display_direction = Direction.UP if movement.y < 0 else Direction.DOWN
 		elif (_primary_direction == Direction.UP or _primary_direction == Direction.DOWN) and movement.x != 0:
 			display_direction = Direction.LEFT if movement.x < 0 else Direction.RIGHT
+			
+		# Otherwise, the faced direction is the primary direction.
 		else:
 			display_direction = _primary_direction
 	
+		# Display the walking animation based on the faced direction
 		faced_direction = display_direction
 		_play_directional_anim("walk", display_direction)
+		
 	else:
+		# When the player is idle, it does not have a primary direction and plays the idle animation of the direction it last faced.
 		_has_primary = false
 		_play_directional_anim("idle", faced_direction)
 
+# Function for when the player attacks
+func play_attack() -> void:
+	match faced_direction:
+		Direction.LEFT:		sprite.play("attack_left")
+		Direction.RIGHT:	sprite.play("attack_right")
+		Direction.UP:		sprite.play("attack_up")
+		Direction.DOWN:		sprite.play("attack_down")
+
+#region Signal Functions
+# Signal that emits when an animation is finished
+func _on_animated_sprite_animation_finished() -> void:
+	animation_finished.emit()
+#endregion
+
+#region Helper Functions
+# Function for changing the direction of the player and playing the right animations for idling and walking 
 func _play_directional_anim(prefix: String, direction: Direction) -> void:
 	match direction:
 		Direction.LEFT:  sprite.play(prefix + "_left")
@@ -57,16 +106,6 @@ func _play_directional_anim(prefix: String, direction: Direction) -> void:
 		Direction.UP:    sprite.play(prefix + "_up")
 		Direction.DOWN:  sprite.play(prefix + "_down")
 	
+	# Emits that the direction has changed
 	direction_faced_changed.emit(direction)
-
-func play_attack() -> void:
-	print(Direction.find_key(faced_direction))
-	match faced_direction:
-		Direction.LEFT:		sprite.play("attack_left")
-		Direction.RIGHT:	sprite.play("attack_right")
-		Direction.UP:		sprite.play("attack_up")
-		Direction.DOWN:		sprite.play("attack_down")
-
-
-func _on_animated_sprite_animation_finished() -> void:
-	animation_finished.emit()
+#endregion

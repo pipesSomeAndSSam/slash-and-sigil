@@ -1,3 +1,4 @@
+# Resource for Player Information
 extends Resource
 class_name PlayerInfo
 

@@ -1,3 +1,4 @@
+# Melee Player Implementation
 extends BasePlayer
 class_name MeleePlayer
 # TO DO: Assess whether some parts of this code can be transferred in 
