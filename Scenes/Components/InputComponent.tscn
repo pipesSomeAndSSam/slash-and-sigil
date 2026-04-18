@@ -4,3 +4,4 @@
 
 [node name="InputComponent" type="Node2D" unique_id=153531004]
 script = ExtResource("1_mhi8w")
+player_number = 1

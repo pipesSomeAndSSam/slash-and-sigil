@@ -1,125 +1,120 @@
-[gd_scene format=3 uid="uid://dy3djcetqqcah"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://jruptsuq3df0"]
 
-[ext_resource type="Texture2D" uid="uid://dp8a8qd0xka1o" path="res://Assets/Ninja Adventure - Asset Pack/Ninja Adventure - Asset Pack/Actor/Characters/RedGladiator/SpriteSheet.png" id="1_2v07m"]
-[ext_resource type="Script" uid="uid://b6mgmfi11noet" path="res://Scripts/Player/player.gd" id="1_t2dcf"]
-[ext_resource type="AudioStream" uid="uid://yb64llgf2bjy" path="res://Assets/Ninja Adventure - Asset Pack/Ninja Adventure - Asset Pack/Sounds/Game/Hit1.wav" id="2_lj68b"]
-[ext_resource type="Script" uid="uid://bfcr4itx3wtsj" path="res://Scripts/MeleePlayer/animation.gd" id="3_100sh"]
-[ext_resource type="PackedScene" uid="uid://ddxf4jxh6dd1l" path="res://Scenes/Components/InputComponent.tscn" id="4_100sh"]
-[ext_resource type="PackedScene" uid="uid://ca055imu5n00o" path="res://Scenes/Components/MovementComponent.tscn" id="5_lmye5"]
+[ext_resource type="Texture2D" uid="uid://dp8a8qd0xka1o" path="res://Assets/Ninja Adventure - Asset Pack/Ninja Adventure - Asset Pack/Actor/Characters/RedGladiator/SpriteSheet.png" id="1_xx5m3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2xa4p"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ppjnn"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(0, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_llwqa"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ilhg"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(32, 64, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6f20e"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ktswk"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(48, 64, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6v3eu"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_odtp3"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(16, 64, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lmye5"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hl4io"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o0bie"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5mh0d"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d336j"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1nb5p"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iv1ii"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xa3io"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(0, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ivxkt"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ykgcf"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqr1c"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dn5xm"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(32, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nn8rt"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q6jha"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bjsbq"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(48, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ch12f"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(48, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c6jhf"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgu0h"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8oq5x"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d7ce8"]
-atlas = ExtResource("1_2v07m")
+atlas = ExtResource("1_xx5m3")
 region = Rect2(16, 48, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_epyhi"]
+[resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -277,35 +272,3 @@ animations = [{
 "name": &"walk_up",
 "speed": 5.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpx3q"]
-size = Vector2(15, 15)
-
-[node name="MeleePlayer" type="CharacterBody2D" unique_id=836309907 node_paths=PackedStringArray("input_component", "movement_component", "animation_component")]
-scale = Vector2(4, 4)
-script = ExtResource("1_t2dcf")
-input_component = NodePath("InputComponent")
-movement_component = NodePath("MovementComponent")
-animation_component = NodePath("AnimatedSprite2D")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1446858072]
-sprite_frames = SubResource("SpriteFrames_epyhi")
-animation = &"idle_up"
-script = ExtResource("3_100sh")
-
-[node name="MeleeAttack" type="AudioStreamPlayer2D" parent="." unique_id=757347320]
-stream = ExtResource("2_lj68b")
-
-[node name="Hitbox" type="Area2D" parent="." unique_id=818418039]
-position = Vector2(7.5, 0.25)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1854390598]
-shape = SubResource("RectangleShape2D_kpx3q")
-
-[node name="InputComponent" parent="." unique_id=153531004 instance=ExtResource("4_100sh")]
-
-[node name="MovementComponent" parent="." unique_id=1092337649 instance=ExtResource("5_lmye5")]
-speed = 500
-
-[connection signal="player1_moved" from="InputComponent" to="." method="_on_input_component_player_1_moved"]

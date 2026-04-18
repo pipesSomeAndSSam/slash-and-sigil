@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b50aj35j5yfmc"]
+
+[ext_resource type="Texture2D" uid="uid://6r1ypynhqwrf" path="res://Assets/Ninja Adventure - Asset Pack/Ninja Adventure - Asset Pack/Ui/LifeReceptacle/heart pixel art 16x16.png" id="1_gvws8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lj2jr"]
+size = Vector2(64, 64)
+
+[node name="HealthPickup" type="Area2D" unique_id=1548554516]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1059443328]
+scale = Vector2(4, 4)
+texture = ExtResource("1_gvws8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1632795048]
+shape = SubResource("RectangleShape2D_lj2jr")

@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://c4gcy71ubjwbw"]
+
+[ext_resource type="Texture2D" uid="uid://dj0yn4glkvu42" path="res://UI/heart_full.png" id="1_e0onf"]
+[ext_resource type="Texture2D" uid="uid://b6kpkq441fp27" path="res://Assets/Ninja Adventure - Asset Pack/Ninja Adventure - Asset Pack/Actor/Characters/RedGladiator/Faceset.png" id="1_fccik"]
+[ext_resource type="Texture2D" uid="uid://bd4ea5xn4wx65" path="res://UI/Skills/MeleePlayer/02-FireSkill.png" id="4_t1xeu"]
+[ext_resource type="Texture2D" uid="uid://c01p2208qh08e" path="res://UI/Skills/MeleePlayer/04-FireSkill.png" id="5_36asn"]
+
+[node name="HUD" type="CanvasLayer" unique_id=657072141]
+
+[node name="PlayerUIPadding1" type="MarginContainer" parent="." unique_id=1257419579]
+offset_right = 349.0
+offset_bottom = 110.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="PlayerUI1" type="HBoxContainer" parent="PlayerUIPadding1" unique_id=1605741936]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="PlayerIcon" type="TextureRect" parent="PlayerUIPadding1/PlayerUI1" unique_id=267276830]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_fccik")
+
+[node name="HealthAndSkillsUI" type="VBoxContainer" parent="PlayerUIPadding1/PlayerUI1" unique_id=941251079]
+custom_minimum_size = Vector2(235, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Health" type="HBoxContainer" parent="PlayerUIPadding1/PlayerUI1/HealthAndSkillsUI" unique_id=892603442]
+custom_minimum_size = Vector2(230, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Heart1" type="TextureRect" parent="PlayerUIPadding1/PlayerUI1/HealthAndSkillsUI/Health" unique_id=98683151]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_e0onf")
+
+[node name="Heart2" type="TextureRect" parent="PlayerUIPadding1/PlayerUI1/HealthAndSkillsUI/Health" unique_id=1907793321]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_e0onf")
+
+[node name="Heart3" type="TextureRect" parent="PlayerUIPadding1/PlayerUI1/HealthAndSkillsUI/Health" unique_id=599926412]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_e0onf")
+
+[node name="Heart4" type="TextureRect" parent="PlayerUIPadding1/PlayerUI1/HealthAndSkillsUI/Health" unique_id=2009770061]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_e0onf")
+
+[node name="Heart5" type="TextureRect" parent="PlayerUIPadding1/PlayerUI1/HealthAndSkillsUI/Health" unique_id=187373778]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_e0onf")
+
+[node name="Skills" type="HBoxContainer" parent="PlayerUIPadding1/PlayerUI1/HealthAndSkillsUI" unique_id=1307159359]
+custom_minimum_size = Vector2(70, 35)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+
+[node name="Skill1" type="TextureRect" parent="PlayerUIPadding1/PlayerUI1/HealthAndSkillsUI/Skills" unique_id=116978788]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_t1xeu")
+
+[node name="Skill2" type="TextureRect" parent="PlayerUIPadding1/PlayerUI1/HealthAndSkillsUI/Skills" unique_id=1013406728]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_36asn")
+
+[node name="PlayerUIPadding2" type="MarginContainer" parent="." unique_id=518004762]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -349.0
+offset_bottom = 110.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="PlayerUI2" type="HBoxContainer" parent="PlayerUIPadding2" unique_id=450577793]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="PlayerIcon" type="TextureRect" parent="PlayerUIPadding2/PlayerUI2" unique_id=1727905094]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_fccik")
+
+[node name="HealthAndSkillsUI" type="VBoxContainer" parent="PlayerUIPadding2/PlayerUI2" unique_id=790732082]
+custom_minimum_size = Vector2(235, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Health" type="HBoxContainer" parent="PlayerUIPadding2/PlayerUI2/HealthAndSkillsUI" unique_id=1383755221]
+custom_minimum_size = Vector2(230, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Heart1" type="TextureRect" parent="PlayerUIPadding2/PlayerUI2/HealthAndSkillsUI/Health" unique_id=2091432130]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_e0onf")
+
+[node name="Heart2" type="TextureRect" parent="PlayerUIPadding2/PlayerUI2/HealthAndSkillsUI/Health" unique_id=1090230112]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_e0onf")
+
+[node name="Heart3" type="TextureRect" parent="PlayerUIPadding2/PlayerUI2/HealthAndSkillsUI/Health" unique_id=1107780252]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_e0onf")
+
+[node name="Heart4" type="TextureRect" parent="PlayerUIPadding2/PlayerUI2/HealthAndSkillsUI/Health" unique_id=2019365248]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_e0onf")
+
+[node name="Heart5" type="TextureRect" parent="PlayerUIPadding2/PlayerUI2/HealthAndSkillsUI/Health" unique_id=797994101]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_e0onf")
+
+[node name="Skills" type="HBoxContainer" parent="PlayerUIPadding2/PlayerUI2/HealthAndSkillsUI" unique_id=2096893147]
+custom_minimum_size = Vector2(70, 35)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+
+[node name="Skill1" type="TextureRect" parent="PlayerUIPadding2/PlayerUI2/HealthAndSkillsUI/Skills" unique_id=1106247352]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_t1xeu")
+
+[node name="Skill2" type="TextureRect" parent="PlayerUIPadding2/PlayerUI2/HealthAndSkillsUI/Skills" unique_id=1162430130]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_36asn")
