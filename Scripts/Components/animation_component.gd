@@ -13,11 +13,11 @@ enum Direction {
 	RIGHT
 }
 var faced_direction : Direction
-
-# Tracks the primary (first-established) axis direction separately from the secondary axis
 var _primary_direction : Direction = Direction.DOWN
 var _has_primary : bool = false
 
+signal direction_faced_changed(direction: Direction)
+signal animation_finished
 
 func update_movement(movement: Vector2) -> void:
 	if movement != Vector2.ZERO:
@@ -29,7 +29,6 @@ func update_movement(movement: Vector2) -> void:
 				_primary_direction = Direction.UP if movement.y < 0 else Direction.DOWN
 			_has_primary = true
 		else:
-			# x can steal primary from y, but y can never steal primary from x
 			if movement.x != 0 and movement.y == 0:
 				_primary_direction = Direction.LEFT if movement.x < 0 else Direction.RIGHT
 			elif movement.x == 0 and movement.y != 0:
@@ -57,6 +56,17 @@ func _play_directional_anim(prefix: String, direction: Direction) -> void:
 		Direction.RIGHT: sprite.play(prefix + "_right")
 		Direction.UP:    sprite.play(prefix + "_up")
 		Direction.DOWN:  sprite.play(prefix + "_down")
+	
+	direction_faced_changed.emit(direction)
 
 func play_attack() -> void:
-	pass
+	print(Direction.find_key(faced_direction))
+	match faced_direction:
+		Direction.LEFT:		sprite.play("attack_left")
+		Direction.RIGHT:	sprite.play("attack_right")
+		Direction.UP:		sprite.play("attack_up")
+		Direction.DOWN:		sprite.play("attack_down")
+
+
+func _on_animated_sprite_animation_finished() -> void:
+	animation_finished.emit()

@@ -10,3 +10,5 @@ sprite = NodePath("AnimatedSprite2D")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=764702358]
 sprite_frames = ExtResource("2_0ayny")
 animation = &"idle_down"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_animation_finished"]

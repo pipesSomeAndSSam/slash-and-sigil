@@ -46,3 +46,4 @@ speed = 200
 
 [connection signal="attack_pressed" from="InputComponent" to="." method="_on_input_component_attack_pressed"]
 [connection signal="player_moved" from="InputComponent" to="." method="_on_input_component_player_moved"]
+[connection signal="animation_finished" from="AnimationComponent" to="." method="_on_animation_component_animation_finished"]
