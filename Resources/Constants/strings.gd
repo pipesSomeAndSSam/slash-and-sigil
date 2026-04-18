@@ -33,8 +33,8 @@ const ANIMATION : String = "Animation"
 
 #region Input Names
 static func PLAYER_INPUT_MOVEMENT_MAP(player_no: int, direction: String) -> String:
-	return "player%_%" % [player_no, direction]
+	return "player%d_%s" % [player_no, direction]
 
 static func PLAYER_INPUT_ACTION_MAP(player_no: int, action: String) -> String:
-	return "player%_%" % [player_no, action]
+	return "player%d_%ssd" % [player_no, action]
 #endregion
