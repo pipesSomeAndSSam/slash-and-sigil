@@ -24,6 +24,7 @@ enum Direction {
 
 # The direction the player is expected to face given the mechanics
 var faced_direction : Direction  
+
 # The original direction the player faced (e.g., if left then down,
 # then left is the primary direction)
 var _primary_direction : Direction = Direction.DOWN 
