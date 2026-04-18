@@ -30,5 +30,5 @@ func _has_health(area: Area2D) -> bool:
 
 # Function that checks if the player is hitting itself
 func _self_fire(player: Node2D) -> bool:
-	return player == get_parent()
+	return player == owner
 #endregion
