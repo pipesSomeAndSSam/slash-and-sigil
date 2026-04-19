@@ -1,23 +1,26 @@
 [gd_scene format=3 uid="uid://dy3djcetqqcah"]
 
-[ext_resource type="Script" uid="uid://b6mgmfi11noet" path="res://Scripts/Player/player.gd" id="1_t2dcf"]
+[ext_resource type="Script" uid="uid://b6mgmfi11noet" path="res://Scripts/Player/melee_player.gd" id="1_t2dcf"]
 [ext_resource type="AudioStream" uid="uid://yb64llgf2bjy" path="res://Assets/Ninja Adventure - Asset Pack/Ninja Adventure - Asset Pack/Sounds/Game/Hit1.wav" id="2_lj68b"]
+[ext_resource type="PackedScene" uid="uid://dsb410gsxf7mq" path="res://Scenes/Components/Attack/MeleeAttackComponent.tscn" id="3_lmye5"]
 [ext_resource type="PackedScene" uid="uid://ddxf4jxh6dd1l" path="res://Scenes/Components/InputComponent.tscn" id="4_100sh"]
 [ext_resource type="PackedScene" uid="uid://ca055imu5n00o" path="res://Scenes/Components/MovementComponent.tscn" id="5_lmye5"]
 [ext_resource type="PackedScene" uid="uid://cqbseaw1scdv8" path="res://Scenes/Components/AnimationComponent.tscn" id="5_t2dcf"]
+[ext_resource type="PackedScene" uid="uid://dg6ppayyke5uy" path="res://Scenes/Components/HealthComponent.tscn" id="6_100sh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lj68b"]
 size = Vector2(12, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpx3q"]
-size = Vector2(15, 15)
-
-[node name="MeleePlayer" type="CharacterBody2D" unique_id=398600512 node_paths=PackedStringArray("input_component", "movement_component", "animation_component")]
+[node name="MeleePlayer" type="CharacterBody2D" unique_id=398600512 node_paths=PackedStringArray("melee_attack_component", "input_component", "movement_component", "animation_component", "health_component")]
 scale = Vector2(4, 4)
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_t2dcf")
+melee_attack_component = NodePath("MeleeAttackComponent")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
+health_component = NodePath("HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1138088157]
 position = Vector2(0, 2.75)
@@ -26,13 +29,6 @@ shape = SubResource("RectangleShape2D_lj68b")
 [node name="MeleeAttack" type="AudioStreamPlayer2D" parent="." unique_id=213702102]
 stream = ExtResource("2_lj68b")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=520386718]
-position = Vector2(7.75, 0.25)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1356730777]
-shape = SubResource("RectangleShape2D_kpx3q")
-
 [node name="InputComponent" parent="." unique_id=1288122305 instance=ExtResource("4_100sh")]
 
 [node name="MovementComponent" parent="." unique_id=13386198 instance=ExtResource("5_lmye5")]
@@ -40,4 +36,12 @@ speed = 200
 
 [node name="AnimationComponent" parent="." unique_id=1077564949 instance=ExtResource("5_t2dcf")]
 
+[node name="HealthComponent" parent="." unique_id=1758390133 instance=ExtResource("6_100sh")]
+health = 50.0
+
+[node name="MeleeAttackComponent" parent="." unique_id=1202563886 instance=ExtResource("3_lmye5")]
+position = Vector2(7.75, 0.25)
+
+[connection signal="attack_pressed" from="InputComponent" to="." method="_on_input_component_attack_pressed"]
 [connection signal="player_moved" from="InputComponent" to="." method="_on_input_component_player_moved"]
+[connection signal="animation_finished" from="AnimationComponent" to="." method="_on_animation_component_animation_finished"]
