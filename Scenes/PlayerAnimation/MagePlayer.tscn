@@ -284,7 +284,7 @@ size = Vector2(15, 15)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2039592788]
 sprite_frames = SubResource("SpriteFrames_nh8nf")
-animation = &"attack_up"
+animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=583624962]
 position = Vector2(0, 2.75)
