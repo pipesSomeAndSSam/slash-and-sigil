@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bhrciqaqvgijs"]
+
+[ext_resource type="Script" uid="uid://bcdi5ealkuwse" path="res://Scripts/Components/melee/melee_skill_1_component.gd" id="1_5387e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5387e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vvwn"]
+
+[node name="MeleeSkill1Component" type="Node2D" unique_id=181853085 node_paths=PackedStringArray("slash_hitbox", "swing_hitbox", "chain_timer")]
+script = ExtResource("1_5387e")
+slash_hitbox = NodePath("SlashHitbox")
+swing_hitbox = NodePath("SwingHitbox")
+chain_timer = NodePath("ChainTimer")
+
+[node name="SlashHitbox" type="Area2D" parent="." unique_id=1087937121]
+
+[node name="Shape" type="CollisionShape2D" parent="SlashHitbox" unique_id=1434216734]
+shape = SubResource("RectangleShape2D_5387e")
+
+[node name="SwingHitbox" type="Area2D" parent="." unique_id=1651372774]
+
+[node name="Shape" type="CollisionShape2D" parent="SwingHitbox" unique_id=322950064]
+shape = SubResource("RectangleShape2D_7vvwn")
+
+[node name="ChainTimer" type="Timer" parent="." unique_id=1026713183]
+
+[connection signal="area_entered" from="SlashHitbox" to="." method="_on_slash_area_area_entered"]
+[connection signal="area_entered" from="SwingHitbox" to="." method="_on_swing_area_area_entered"]
+[connection signal="timeout" from="ChainTimer" to="." method="_on_chain_timer_timeout"]

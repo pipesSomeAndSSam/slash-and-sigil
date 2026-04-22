@@ -15,9 +15,15 @@ const MELEE_ATTACK_COMPONENT_NAME : String = "MeleeAttackComponent"
 
 #region Animation Names
 # Default Animations
-static func default_anim_name(type: String, direction: int) -> String:
+# action is a String that details the current action of the player
+# direction is an int, based on the Direction enum, that describes the current direction the player is facing
+static func default_anim_name(action: String, direction: int) -> String:
 	var dir_string = AnimationComponent.Direction.keys()[direction].to_lower()
-	return "%s_%s" % [type, dir_string]
+	return "%s_%s" % [action, dir_string]
+
+const WALK : String = "walk"
+const IDLE : String = "idle"
+const ATTACK : String = "attack"
 #endregion
 
 #region Export Names

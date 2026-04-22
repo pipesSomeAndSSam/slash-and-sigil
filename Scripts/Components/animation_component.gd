@@ -2,14 +2,12 @@
 extends Node2D
 class_name AnimationComponent
 
-#region Declarables
+#region Initialisations
 # Variables
 @export var sprite : AnimatedSprite2D
 
 # Constants
-const WALK : String = "walk"
-const IDLE : String = "idle"
-const ATTACK : String = "attack"
+
 
 # Enum for which direction the player is facing
 enum Direction {
@@ -40,6 +38,12 @@ var _has_primary : bool = false
 # Signals
 signal direction_faced_changed(direction: Direction)
 signal animation_finished
+#endregion
+
+#region Signal Functions
+# Signal that emits when an animation is finished
+func _on_animated_sprite_animation_finished() -> void:
+	animation_finished.emit()
 #endregion
 
 # Function for updating movement
@@ -82,24 +86,39 @@ func update_movement(movement: Vector2) -> void:
 			faced_direction = _primary_direction
 	
 		# Display the walking animation based on the faced direction
-		_play_directional_anim(WALK, faced_direction)
+		_play_directional_anim(Strings.WALK, faced_direction)
 		direction_faced_changed.emit(faced_direction)
 		
 	else:
 		# When the player is idle, it does not have a primary direction and plays the idle animation of the direction it last faced.
 		_has_primary = false
-		_play_directional_anim(IDLE, faced_direction)
+		_play_directional_anim(Strings.IDLE, faced_direction)
 		direction_faced_changed.emit(faced_direction)
 
 # Function for when the player attacks
 func play_attack() -> void:
-	_play_directional_anim(ATTACK, faced_direction)
+	_play_directional_anim(Strings.ATTACK, faced_direction)
 
-#region Signal Functions
-# Signal that emits when an animation is finished
-func _on_animated_sprite_animation_finished() -> void:
-	animation_finished.emit()
-#endregion
+# Function for when the player slashes with skill1
+func play_skill1_slash() -> void:
+	# TO DO: Change to slash anim
+	_play_directional_anim(Strings.ATTACK, faced_direction)
+
+# Function for when the player swings with skill1
+func play_skill1_swing() -> void:
+	# TO DO: Change to switch anim
+	_play_directional_anim(Strings.ATTACK, faced_direction)
+
+# Function that returns the direction where the player is facing
+func get_facing_direction() -> Vector2:
+	match faced_direction:
+		Direction.LEFT:		return Vector2.LEFT
+		Direction.RIGHT:	return Vector2.RIGHT
+		Direction.UP:		return Vector2.UP
+		Direction.DOWN:		return Vector2.DOWN
+	
+	# Default return is DOWN
+	return Vector2.DOWN
 
 #region Helper Functions
 # Function for changing the direction of the player and playing the right animations for idling and walking 
