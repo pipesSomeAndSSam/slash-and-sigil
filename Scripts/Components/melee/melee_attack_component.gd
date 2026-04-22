@@ -25,10 +25,12 @@ func get_targets() -> Array[Node2D]:
 
 #region Helper Functions
 # Function that checks if the area has health
+# area is an Area2D to be checked if it is damageable
 func _has_health(area: Area2D) -> bool:
 	return area is HealthComponent
 
 # Function that checks if the player is hitting itself
+# player is a Node2D that acts as the root node of the component
 func _self_fire(player: Node2D) -> bool:
 	return player == owner
 #endregion
