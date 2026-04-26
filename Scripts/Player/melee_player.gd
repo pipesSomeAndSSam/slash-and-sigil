@@ -36,20 +36,17 @@ func _on_melee_skill_1_component_slash_started(push_velocity: Vector2) -> void:
 	player_state = State.SKILL1_SLASH
 	velocity = push_velocity
 	animation_component.play_skill1_slash()
-	print("%s" % State.find_key(player_state))
 	move_and_slide()
 
 func _on_melee_skill_1_component_swing_started(lunge_velocity: Vector2) -> void:
 	player_state = State.SKILL1_SWING
 	velocity = lunge_velocity
 	animation_component.play_skill1_swing()
-	print("%s" % State.find_key(player_state))
 	move_and_slide()
 
 func _on_melee_skill_1_component_skill_1_finished() -> void:
 	player_state = State.DEFAULT
 	velocity = Vector2.ZERO
-	print("%s" % State.find_key(player_state))
 	
 # Function that connects to when the player animation is finished
 func _on_animation_component_animation_finished() -> void:
