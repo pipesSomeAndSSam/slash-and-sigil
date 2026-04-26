@@ -53,6 +53,8 @@ func _on_animation_component_animation_finished() -> void:
 	match player_state:
 		State.ATTACK:
 			player_state = State.DEFAULT
+		State.SKILL1_SLASH:
+			melee_skill1_component.start_swing()
 		State.SKILL1_SWING:
 			melee_skill1_component.finish_swing()
 #endregion
@@ -102,6 +104,10 @@ func _attack() -> void:
 func _skill1() -> void:
 	# Can only use skill 1 in DEFAULT state
 	if player_state != State.DEFAULT:
+		return
+	
+	# Can only use skill 1 when not in cooldown
+	if not melee_skill1_component.can_execute:
 		return
 		
 	# Change state to SKILL1_SLASH and play animation

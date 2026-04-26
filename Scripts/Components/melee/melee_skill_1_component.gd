@@ -7,7 +7,7 @@ class_name MeleeSkill1Component
 @export_category("Melee Skill Variables")
 @export var slash_push : float = 120.0
 @export var swing_lunge : float = 300.0
-@export var chain_delay : float = 0.3
+@export var cooldown_duration : float = 4.0
 @export var slash_damage : float = 8.0
 @export var swing_damage : float = 15.0
 
@@ -15,10 +15,11 @@ class_name MeleeSkill1Component
 @export_category("Melee Skill Components")
 @export var slash_hitbox : Area2D
 @export var swing_hitbox : Area2D
-@export var chain_timer : Timer
+@export var cooldown_timer : Timer
 
 # Direction for applying the skill
 var _facing : Vector2 = Vector2.ZERO
+var can_execute : bool = true
 
 # Constants
 const SHAPE_NAME : String = "Shape"
@@ -30,10 +31,8 @@ signal skill1_finished
 #endregion
 
 #region Signal connections
-func _on_chain_timer_timeout() -> void:
-	_toggle_hitbox(swing_hitbox, true)
-	_toggle_hitbox(slash_hitbox, false)
-	swing_started.emit(_facing * swing_lunge)
+func _on_cooldown_timer_timeout() -> void:
+	can_execute = true
 	
 func _on_slash_area_area_entered(area: Area2D) -> void:
 	_apply_damage(area, slash_damage)
@@ -42,9 +41,11 @@ func _on_swing_area_area_entered(area: Area2D) -> void:
 	_apply_damage(area, swing_damage)
 #endregion
 
+#region Action Functions
 # Function that executes the skill
 func execute(facing: Vector2) -> void:
 	# Initialise defaults
+	can_execute = false
 	_facing = facing
 	
 	# Toggle hitboxes to avoid overlapping
@@ -55,9 +56,15 @@ func execute(facing: Vector2) -> void:
 	slash_started.emit(_facing * slash_push)
 	
 	# Activate timer
-	chain_timer.one_shot = true
-	chain_timer.wait_time = chain_delay
-	chain_timer.start()
+	cooldown_timer.one_shot = true
+	cooldown_timer.wait_time = cooldown_duration
+	cooldown_timer.start()
+
+# Function that starts the swing, called after the slash animation finishes
+func start_swing() -> void:
+	_toggle_hitbox(swing_hitbox, true)
+	_toggle_hitbox(slash_hitbox, false)
+	swing_started.emit(_facing * swing_lunge)
 
 # Function that finished the swing, called when the swing animation finishes
 func finish_swing() -> void:
@@ -66,15 +73,12 @@ func finish_swing() -> void:
 
 # Function that interrupts the skill mid-execution
 func interrupt() -> void:
-	# Only interrupts when the skill is ongoing
-	if chain_timer.is_stopped():
-		return
-	
 	# Disable all hitboxes
 	_toggle_hitbox(slash_hitbox, false)
 	_toggle_hitbox(swing_hitbox, false)
 	
 	skill1_finished.emit()
+#endregion
 
 #region Helper functions
 # Function that applies damage to damageable entities

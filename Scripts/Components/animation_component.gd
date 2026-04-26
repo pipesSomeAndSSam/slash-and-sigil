@@ -6,9 +6,6 @@ class_name AnimationComponent
 # Variables
 @export var sprite : AnimatedSprite2D
 
-# Constants
-
-
 # Enum for which direction the player is facing
 enum Direction {
 	DOWN,
@@ -16,7 +13,6 @@ enum Direction {
 	LEFT,
 	RIGHT
 }
-
 
 # Variables for keeping track of the player facing mechanics
 # Mechanics:
@@ -46,6 +42,7 @@ func _on_animated_sprite_animation_finished() -> void:
 	animation_finished.emit()
 #endregion
 
+#region Action Animations
 # Function for updating movement
 # movement is a Vector2 that shows the direction of the player
 func update_movement(movement: Vector2) -> void:
@@ -57,9 +54,9 @@ func update_movement(movement: Vector2) -> void:
 			# will always be in the x-axis whenever there is a an
 			# x-axis movement detected. Otherwise, the primary direction will be in the y-axis.
 			if movement.x != 0:
-				_primary_direction = Direction.LEFT if movement.x < 0 else Direction.RIGHT
+				_primary_direction = _get_x_direction(movement.x)
 			else:
-				_primary_direction = Direction.UP if movement.y < 0 else Direction.DOWN
+				_primary_direction = _get_y_direction(movement.y)
 			
 			# If the player is moving, it automatically has a primary direction. 
 			_has_primary = true
@@ -67,19 +64,19 @@ func update_movement(movement: Vector2) -> void:
 		else:
 			# When the player is moving strictly in a direction of one axis, then the primary direction should be where the direction in which the player is going.
 			if movement.x != 0 and movement.y == 0:
-				_primary_direction = Direction.LEFT if movement.x < 0 else Direction.RIGHT
+				_primary_direction = _get_x_direction(movement.x)
 			elif movement.x == 0 and movement.y != 0:
-				_primary_direction = Direction.UP if movement.y < 0 else Direction.DOWN
+				_primary_direction = _get_y_direction(movement.y)
 		
 
 		# If a primary direction exists and the movement vector
 		# introduces movement in the axis opposite to the primary
 		# direction, the player should be facing in the introduced
 		# movement. 
-		if (_primary_direction == Direction.LEFT or _primary_direction == Direction.RIGHT) and movement.y != 0:
-			faced_direction = Direction.UP if movement.y < 0 else Direction.DOWN
-		elif (_primary_direction == Direction.UP or _primary_direction == Direction.DOWN) and movement.x != 0:
-			faced_direction = Direction.LEFT if movement.x < 0 else Direction.RIGHT
+		if _is_in_x_axis(_primary_direction) and movement.y != 0:
+			faced_direction = _get_y_direction(movement.y)
+		elif _is_in_y_axis(_primary_direction) and movement.x != 0:
+			faced_direction = _get_x_direction(movement.x)
 			
 		# Otherwise, the faced direction is the primary direction.
 		else:
@@ -119,9 +116,32 @@ func get_facing_direction() -> Vector2:
 	
 	# Default return is DOWN
 	return Vector2.DOWN
+#endregion
 
 #region Helper Functions
 # Function for changing the direction of the player and playing the right animations for idling and walking 
+# prefix is a String that determines the action of the player
+# direction is a Direction that shows where the player is facing
 func _play_directional_anim(prefix: String, direction: Direction) -> void:
 	sprite.play(Strings.default_anim_name(prefix, direction))
+	
+# Function that returns the corresponding direction based on the x movement
+# x_magnitude is a float that determines where the player is heading with respect to the x-axis
+func _get_x_direction(x_magnitude: float) -> Direction:
+	return Direction.LEFT if x_magnitude < 0 else Direction.RIGHT
+
+# Function that returns the corresponding direction based on the y movement
+# y_magnitude is a float that determines where the player is heading with respect to the y-axis
+func _get_y_direction(y_magnitude: float) -> Direction:
+	return Direction.UP if y_magnitude < 0 else Direction.DOWN
+
+# Function that checks if the direction is located within the x-axis
+# direction is a Direction that shows where the player is facing
+func _is_in_x_axis(direction: Direction) -> bool:
+	return direction == Direction.LEFT or direction == Direction.RIGHT
+	
+# Function that checks if the direction is located within the y-axis
+# direction is a Direction that shows where the player is facing
+func _is_in_y_axis(direction: Direction) -> bool:
+	return direction == Direction.UP or direction == Direction.DOWN
 #endregion
