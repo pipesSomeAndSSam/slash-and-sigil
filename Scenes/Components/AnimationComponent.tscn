@@ -2,13 +2,115 @@
 
 [ext_resource type="Script" uid="uid://bfcr4itx3wtsj" path="res://Scripts/Components/animation_component.gd" id="1_lm80p"]
 [ext_resource type="SpriteFrames" uid="uid://jruptsuq3df0" path="res://Resources/Players/Melee/m_sprite_frames.tres" id="2_0ayny"]
+[ext_resource type="Texture2D" uid="uid://bes256f2wkd3o" path="res://UI/WeaponsSprites/GladiatorSword.png" id="2_dq5i4"]
+
+[sub_resource type="Animation" id="Animation_0ayny"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponPivot/WeaponSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponPivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponPivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.7853982]
+}
+
+[sub_resource type="Animation" id="Animation_k01c0"]
+resource_name = "attack_weapon_animation"
+length = 0.46666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponPivot/WeaponSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponPivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(7, -3), Vector2(8, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponPivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.7853982, 2.0494716]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6lxsi"]
+_data = {
+&"RESET": SubResource("Animation_0ayny"),
+&"attack_weapon_animation": SubResource("Animation_k01c0")
+}
 
 [node name="AnimationComponent" type="Node2D" unique_id=1077564949 node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_lm80p")
 sprite = NodePath("AnimatedSprite2D")
 
+[node name="WeaponPivot" type="Node2D" parent="." unique_id=1442632235]
+position = Vector2(8, 3)
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="WeaponSprite" type="Sprite2D" parent="WeaponPivot" unique_id=188772279]
+visible = false
+position = Vector2(2.4136171, -0.12021804)
+rotation = -0.8547512
+texture = ExtResource("2_dq5i4")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=764702358]
 sprite_frames = ExtResource("2_0ayny")
-animation = &"idle_down"
+animation = &"attack_up"
+frame = 1
+frame_progress = 0.31036007
+
+[node name="HorizontalSwordAttack" type="AnimationPlayer" parent="." unique_id=485522218]
+libraries/ = SubResource("AnimationLibrary_6lxsi")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_animation_finished"]
