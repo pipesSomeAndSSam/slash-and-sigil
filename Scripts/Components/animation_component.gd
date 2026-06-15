@@ -97,7 +97,7 @@ func update_movement(movement: Vector2) -> void:
 # Function for when the player attacks
 func play_attack() -> void:
 	_play_directional_anim(Strings.ATTACK, faced_direction)
-	weapon.play("attack_weapon_animation") # Move string to somewhere else
+	weapon.play(Strings.ATTACK_WEAPON) 
 	
 
 # Function for when the player slashes with skill1

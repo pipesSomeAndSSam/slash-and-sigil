@@ -24,6 +24,8 @@ static func default_anim_name(action: String, direction: int) -> String:
 const WALK : String = "walk"
 const IDLE : String = "idle"
 const ATTACK : String = "attack"
+
+const ATTACK_WEAPON : String = "attack_weapon_animation"
 #endregion
 
 #region Export Names
