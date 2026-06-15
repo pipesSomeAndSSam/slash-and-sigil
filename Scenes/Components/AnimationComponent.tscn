@@ -45,7 +45,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_k01c0"]
 resource_name = "attack_weapon_animation"
-length = 0.56666666
+length = 0.46666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -121,9 +121,8 @@ texture = ExtResource("2_dq5i4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=764702358]
 sprite_frames = ExtResource("2_0ayny")
-animation = &"attack_up"
+animation = &"attack_left"
 frame = 1
-frame_progress = 0.31036007
 
 [node name="HorizontalSwordAttack" type="AnimationPlayer" parent="." unique_id=485522218]
 libraries/ = SubResource("AnimationLibrary_6lxsi")
