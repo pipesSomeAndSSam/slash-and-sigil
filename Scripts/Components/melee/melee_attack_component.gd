@@ -2,7 +2,17 @@
 extends Area2D
 class_name MeleeAttackComponent
 
+#region Initializables
 @export var damage : float
+@export var attack_hitbox : CollisionShape2D
+
+# Basis for hitbox changing
+var hitbox_offset : Vector2
+#endregion
+
+# Initialize hitbox offset value
+func _ready() -> void:
+	hitbox_offset = attack_hitbox.position
 
 # Function that returns all the damageable entities inside the attack hitbox
 func get_targets() -> Array[Node2D]:
@@ -18,10 +28,28 @@ func get_targets() -> Array[Node2D]:
 	# 3. The target is not targetting itself
 	for target in targets:
 		var player = target.get_parent()
-		if _has_health(target) and (not valid_targets.has(target)) and (not _self_fire(player)):
-			valid_targets.append(player)
+		if not _has_health(target):
+			continue
+		if valid_targets.has(target):
+			continue
+		if _self_fire(player):
+			continue
+			
+		valid_targets.append(player)
 	
 	return valid_targets
+
+# Function that changes the hitbox every time the faced direction changes
+func change_hitbox_direction(direction: AnimationComponent.Direction) -> void:
+	match direction:
+		AnimationComponent.Direction.LEFT:
+			attack_hitbox.position = Vector2(-(hitbox_offset.x), hitbox_offset.y)
+		AnimationComponent.Direction.RIGHT:
+			attack_hitbox.position = Vector2(hitbox_offset)
+		AnimationComponent.Direction.UP:
+			attack_hitbox.position = Vector2(hitbox_offset.y, -(hitbox_offset.x))
+		AnimationComponent.Direction.DOWN:
+			attack_hitbox.position = Vector2(hitbox_offset.y, hitbox_offset.x)
 
 #region Helper Functions
 # Function that checks if the area has health

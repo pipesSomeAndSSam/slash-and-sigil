@@ -32,6 +32,13 @@ func _on_input_component_attack_pressed() -> void:
 func _on_input_component_skill_1_pressed() -> void:
 	_skill1()
 
+func _on_animation_component_attacking_animation_played() -> void:
+	# Damage all damageable targets
+	var targets = melee_attack_component.get_targets()
+	for target in targets:
+		var target_hp := target.get_node(Strings.HEALTH_COMPONENT_NAME) as HealthComponent
+		target_hp.take_damage(melee_attack_component.damage)
+
 func _on_melee_skill_1_component_slash_started(push_velocity: Vector2) -> void:
 	player_state = State.SKILL1_SLASH
 	velocity = push_velocity
@@ -92,12 +99,6 @@ func _attack() -> void:
 	# Change state to ATTACK and play animation
 	player_state = State.ATTACK 
 	animation_component.play_attack()
-	
-	# Damage all damageable targets
-	var targets = melee_attack_component.get_targets()
-	for target in targets:
-		var target_hp := target.get_node(Strings.HEALTH_COMPONENT_NAME) as HealthComponent
-		target_hp.take_damage(melee_attack_component.damage)
 
 # Function that executes the first skill of the player
 # It should first slash in front, damaging all enemies, then swings, lunging forward and damaging all enemies hit.
@@ -119,3 +120,7 @@ func _skill1() -> void:
 
 func interrupt_skill1() -> void:
 	melee_skill1_component.interrupt()
+
+
+func _on_animation_component_direction_faced_changed(direction: AnimationComponent.Direction) -> void:
+	melee_attack_component.change_hitbox_direction(direction)

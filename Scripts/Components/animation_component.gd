@@ -5,6 +5,10 @@ class_name AnimationComponent
 #region Initialisations
 # Variables
 @export var sprite : AnimatedSprite2D
+@export var weapon : AnimationPlayer
+@export var weapon_direction: Node2D
+
+var weapon_offset : Vector2
 
 # Enum for which direction the player is facing
 enum Direction {
@@ -34,8 +38,14 @@ var _has_primary : bool = false
 # Signals
 signal direction_faced_changed(direction: Direction)
 signal animation_finished
+signal attacking_animation_played
 #endregion
 
+# The player should start playing down
+func _ready() -> void:
+	# _change_direction should be called after all components have been loaded
+	call_deferred("_change_direction", Direction.DOWN)
+	
 #region Signal Functions
 # Signal that emits when an animation is finished
 func _on_animated_sprite_animation_finished() -> void:
@@ -46,6 +56,9 @@ func _on_animated_sprite_animation_finished() -> void:
 # Function for updating movement
 # movement is a Vector2 that shows the direction of the player
 func update_movement(movement: Vector2) -> void:
+	# Store old direction for checking if direction has changed
+	var last_faced_direction : Direction = faced_direction
+	
 	# Checks if movement is a Zero Vector2
 	# Plays Idle animations if so, or Walk animations otherwise
 	if movement != Vector2.ZERO:
@@ -84,17 +97,20 @@ func update_movement(movement: Vector2) -> void:
 	
 		# Display the walking animation based on the faced direction
 		_play_directional_anim(Strings.WALK, faced_direction)
-		direction_faced_changed.emit(faced_direction)
 		
 	else:
 		# When the player is idle, it does not have a primary direction and plays the idle animation of the direction it last faced.
 		_has_primary = false
 		_play_directional_anim(Strings.IDLE, faced_direction)
-		direction_faced_changed.emit(faced_direction)
+	
+	# Emit signal if faced direction has changed
+	if faced_direction != last_faced_direction:
+		_change_direction(faced_direction) 
 
 # Function for when the player attacks
 func play_attack() -> void:
 	_play_directional_anim(Strings.ATTACK, faced_direction)
+	weapon.play(Strings.ATTACK_WEAPON) 
 
 # Function for when the player slashes with skill1
 func play_skill1_slash() -> void:
@@ -144,4 +160,24 @@ func _is_in_x_axis(direction: Direction) -> bool:
 # direction is a Direction that shows where the player is facing
 func _is_in_y_axis(direction: Direction) -> bool:
 	return direction == Direction.UP or direction == Direction.DOWN
+	
+# Function that changes the direction of necessary components
+# direction is a Direction that shows the new direction the player is facing
+func _change_direction(direction: Direction) -> void:
+	direction_faced_changed.emit(direction)
+	match direction:
+		Direction.RIGHT:
+			weapon_direction.rotation_degrees = Numbers.RIGHT_DEGREES
+		Direction.DOWN:
+			weapon_direction.rotation_degrees = Numbers.DOWN_DEGREES
+		Direction.LEFT:
+			weapon_direction.rotation_degrees = Numbers.LEFT_DEGREES
+		Direction.UP:
+			weapon_direction.rotation_degrees = Numbers.UP_DEGREES
+#endregion
+
+#region Emitter Functions
+# Function that emits the signal that the player has attacked
+func emit_attacking_animation_played() -> void:
+	attacking_animation_played.emit()
 #endregion
