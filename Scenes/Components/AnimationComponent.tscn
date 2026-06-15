@@ -45,7 +45,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_k01c0"]
 resource_name = "attack_weapon_animation"
-length = 0.46666667
+length = 0.56666666
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -82,6 +82,20 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.7853982, 2.0494716]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_attacking_animation_played"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6lxsi"]
 _data = {
@@ -89,9 +103,10 @@ _data = {
 &"attack_weapon_animation": SubResource("Animation_k01c0")
 }
 
-[node name="AnimationComponent" type="Node2D" unique_id=1077564949 node_paths=PackedStringArray("sprite")]
+[node name="AnimationComponent" type="Node2D" unique_id=1077564949 node_paths=PackedStringArray("sprite", "weapon")]
 script = ExtResource("1_lm80p")
 sprite = NodePath("AnimatedSprite2D")
+weapon = NodePath("HorizontalSwordAttack")
 
 [node name="WeaponPivot" type="Node2D" parent="." unique_id=1442632235]
 position = Vector2(8, 3)

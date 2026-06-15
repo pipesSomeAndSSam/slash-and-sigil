@@ -52,6 +52,7 @@ swing_lunge = 500.0
 [connection signal="player_moved" from="InputComponent" to="." method="_on_input_component_player_moved"]
 [connection signal="skill1_pressed" from="InputComponent" to="." method="_on_input_component_skill_1_pressed"]
 [connection signal="animation_finished" from="AnimationComponent" to="." method="_on_animation_component_animation_finished"]
+[connection signal="attacking_animation_played" from="AnimationComponent" to="." method="_on_animation_component_attacking_animation_played"]
 [connection signal="skill1_finished" from="MeleeSkill1Component" to="." method="_on_melee_skill_1_component_skill_1_finished"]
 [connection signal="slash_started" from="MeleeSkill1Component" to="." method="_on_melee_skill_1_component_slash_started"]
 [connection signal="swing_started" from="MeleeSkill1Component" to="." method="_on_melee_skill_1_component_swing_started"]

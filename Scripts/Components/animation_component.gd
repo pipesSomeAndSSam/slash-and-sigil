@@ -5,6 +5,7 @@ class_name AnimationComponent
 #region Initialisations
 # Variables
 @export var sprite : AnimatedSprite2D
+@export var weapon : AnimationPlayer
 
 # Enum for which direction the player is facing
 enum Direction {
@@ -34,6 +35,7 @@ var _has_primary : bool = false
 # Signals
 signal direction_faced_changed(direction: Direction)
 signal animation_finished
+signal attacking_animation_played
 #endregion
 
 #region Signal Functions
@@ -95,6 +97,8 @@ func update_movement(movement: Vector2) -> void:
 # Function for when the player attacks
 func play_attack() -> void:
 	_play_directional_anim(Strings.ATTACK, faced_direction)
+	weapon.play("attack_weapon_animation") # Move string to somewhere else
+	
 
 # Function for when the player slashes with skill1
 func play_skill1_slash() -> void:
@@ -144,4 +148,9 @@ func _is_in_x_axis(direction: Direction) -> bool:
 # direction is a Direction that shows where the player is facing
 func _is_in_y_axis(direction: Direction) -> bool:
 	return direction == Direction.UP or direction == Direction.DOWN
+#endregion
+
+#region Emitter Functions
+func emit_attacking_animation_played() -> void:
+	attacking_animation_played.emit()
 #endregion
