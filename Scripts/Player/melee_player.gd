@@ -120,3 +120,7 @@ func _skill1() -> void:
 
 func interrupt_skill1() -> void:
 	melee_skill1_component.interrupt()
+
+
+func _on_animation_component_direction_faced_changed(direction: AnimationComponent.Direction) -> void:
+	melee_attack_component.change_hitbox_direction(direction)

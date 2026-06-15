@@ -9,7 +9,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponPivot/WeaponSprite:visible")
+tracks/0/path = NodePath("WeaponDirectionPivot/WeaponPivot/WeaponSprite:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -21,7 +21,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponPivot:position")
+tracks/1/path = NodePath("WeaponDirectionPivot/WeaponPivot:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -33,7 +33,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WeaponPivot:rotation")
+tracks/2/path = NodePath("WeaponDirectionPivot/WeaponPivot:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -49,7 +49,7 @@ length = 0.46666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponPivot/WeaponSprite:visible")
+tracks/0/path = NodePath("WeaponDirectionPivot/WeaponPivot/WeaponSprite:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -61,7 +61,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponPivot:position")
+tracks/1/path = NodePath("WeaponDirectionPivot/WeaponPivot:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -73,7 +73,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WeaponPivot:rotation")
+tracks/2/path = NodePath("WeaponDirectionPivot/WeaponPivot:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -103,17 +103,20 @@ _data = {
 &"attack_weapon_animation": SubResource("Animation_k01c0")
 }
 
-[node name="AnimationComponent" type="Node2D" unique_id=1077564949 node_paths=PackedStringArray("sprite", "weapon")]
+[node name="AnimationComponent" type="Node2D" unique_id=1077564949 node_paths=PackedStringArray("sprite", "weapon", "weapon_direction")]
 script = ExtResource("1_lm80p")
 sprite = NodePath("AnimatedSprite2D")
 weapon = NodePath("HorizontalSwordAttack")
+weapon_direction = NodePath("WeaponDirectionPivot")
 
-[node name="WeaponPivot" type="Node2D" parent="." unique_id=1442632235]
+[node name="WeaponDirectionPivot" type="Node2D" parent="." unique_id=466974463]
+
+[node name="WeaponPivot" type="Node2D" parent="WeaponDirectionPivot" unique_id=1442632235]
 position = Vector2(8, 3)
 rotation = 0.7853982
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.9999999, 0.9999999)
 
-[node name="WeaponSprite" type="Sprite2D" parent="WeaponPivot" unique_id=188772279]
+[node name="WeaponSprite" type="Sprite2D" parent="WeaponDirectionPivot/WeaponPivot" unique_id=188772279]
 visible = false
 position = Vector2(2.4136171, -0.12021804)
 rotation = -0.8547512
