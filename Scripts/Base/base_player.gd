@@ -17,3 +17,7 @@ func _skill_1() -> void:
 
 func _skill_2() -> void:
 	pass
+
+func set_player_number(num: int) -> void:
+	if input_component:
+		input_component.player_number = num 
