@@ -1,24 +1,30 @@
+# Factory for creating players
 extends Node
+class_name PlayerFactory
 
-enum PlayerType {
-	MELEE,
-	NINJA,
-	MAGE
+# Types of Players
+enum PlayerType { MELEE, NINJA, MAGE }
+
+# Paths of the scenes of the player types
+const _PATHS = {
+	PlayerType.MELEE: "res://Scenes/PlayerAnimation/MeleePlayer.tscn",
+	PlayerType.NINJA: "res://Scenes/PlayerAnimation/NinjaPlayer.tscn",
+	PlayerType.MAGE: "res://Scenes/PlayerAnimation/MagePlayer.tscn"
 }
 
-const MELEE_PLAYER_SCENE: PackedScene = preload("res://Scenes/PlayerAnimation/MeleePlayer.tscn")
-const NINJA_PLAYER_SCENE: PackedScene = preload("res://Scenes/PlayerAnimation/NinjaPlayer.tscn")
-const MAGE_PLAYER_SCENE: PackedScene = preload("res://Scenes/PlayerAnimation/MagePlayer.tscn")
+# Lazy Loading Cache
+static var _cache: Dictionary = {}
 
-static func create_player(player_type: PlayerType, player_count: int) -> BasePlayer:
-	match player_type:
-		PlayerType.MELEE:
-			var player = MELEE_PLAYER_SCENE.instantiate() as MeleePlayer
-			
-			player.set_player_number(player_count + 1)
-			return player
-		PlayerType.NINJA:
-			return null
-		PlayerType.MAGE:
-			return null
-	return null
+
+static func create_player(player_type: PlayerType, player_id: int) -> BasePlayer:
+	if not _PATHS.has(player_type):
+		return null
+		
+	if not _cache.has(player_type):
+		_cache[player_type] = load(_PATHS[player_type]) as PackedScene
+		
+	var player = _cache[player_type].instantiate() as BasePlayer
+	if player:
+		player.player_id = player_id 
+		
+	return player

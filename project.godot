@@ -22,7 +22,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerManager="*uid://pqakbecdv5t6"
-PlayerFactory="*uid://fkpac8uhfgmm"
 
 [display]
 
